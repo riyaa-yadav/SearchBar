@@ -1,0 +1,100 @@
+.searchBox {
+  width: 500px;
+  margin: 50px auto;
+  border: 1px solid #ddd;
+  border-radius: 24px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: white;
+}
+
+.searchInputContainer {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
+.noBorder {
+  border-bottom: none;
+}
+
+.searchIcon {
+  width: 18px;
+  height: 18px;
+  margin: 0 5px;
+  color: #888;
+}
+
+.searchInput {
+  width: calc(100% - 10px);
+  padding: 5px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.results {
+  margin-top: 5px;
+  max-height: 300px;
+  overflow-y: auto;
+  font-size: 12px;
+}
+
+.userCard {
+  padding: 5px 10px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.userCard:last-child {
+  border-bottom: none;
+}
+
+.userCard.highlighted {
+  background-color: #f0f0f0;
+}
+
+.userCard.selected {
+  background-color: #d3d3d3;
+}
+
+.userCard.selected:hover {
+  background-color: #d3d3d3;
+}
+
+.highlightedText {
+  color: blue;
+}
+
+.noResults {
+  padding: 10px 20px;
+  color: #888;
+  text-align: center;
+}
+
+.itemResult {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 5px;
+}
+
+p {
+  margin-block-start: 5px;
+  margin-block-end: 5px;
+}
+
+.userId {
+  font-weight: 500;
+}
+
+.title {
+  font-size: 14px;
+}
+
+.emptyCard {
+  padding: 10px;
+  color: #888;
+  text-align: center;
+  border: 1px solid #ddd;
+}
