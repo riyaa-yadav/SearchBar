@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./index.module.css";
 
 const SearchBar = ({ users, onSelectUser, selectedUser }) => {
@@ -7,14 +7,18 @@ const SearchBar = ({ users, onSelectUser, selectedUser }) => {
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const [lastInteraction, setLastInteraction] = useState(null);
   const resultsRef = useRef(null);
+  const debounceTimeoutRef = useRef(null);
 
   const handleInputChange = ({ target: { value } }) => {
     setQuery(value);
-    filterUsers(value);
+    debounceFilterUsers(value);
   };
 
   const filterUsers = (query) => {
-    if (!query) return setFilteredData([]);
+    if (!query) {
+      setFilteredData([]);
+      return;
+    }
     const results = users.filter((user) => {
       return (
         user.id.toString().includes(query) ||
@@ -29,6 +33,19 @@ const SearchBar = ({ users, onSelectUser, selectedUser }) => {
     setFilteredData(results);
     setHighlightedIndex(-1);
   };
+
+  const debounceFilterUsers = useCallback(
+    (query) => {
+      if (debounceTimeoutRef.current) {
+        clearTimeout(debounceTimeoutRef.current);
+      }
+      debounceTimeoutRef.current = setTimeout(() => {
+        filterUsers(query);
+        debounceTimeoutRef.current = null;
+      }, 150);
+    },
+    [filterUsers]
+  );
 
   const handleKeyDown = ({ key }) => {
     if (key === "ArrowDown") {
